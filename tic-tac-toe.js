@@ -1,4 +1,5 @@
 //Exercise 1
+//Adding class square to each div element on the board
 window.onload = function()
 {
     let board = document.getElementById('board');
@@ -22,20 +23,31 @@ window.onload = function()
         s.onclick = (event) =>
         {
             //Exercise 2
+            //Placing X or O in each square when clicked
             if(lastPlayer === "X")
             {
-                event.target.innerText = "O";
-                event.target.classList.add("O");
-                state[event.target.id] = "O";
-                lastPlayer = "O";
+                //To prevent player from changing letters
+                if (event.target.innerText === '')
+                {
+                    event.target.innerText = "O";
+                    event.target.classList.add("O");
+                    state[event.target.id] = "O";
+                    lastPlayer = "O";
+                }
+                
             }
 
             else if(lastPlayer === "O")
             {
-                event.target.innerText = "X";
-                event.target.classList.add("X");
-                state[event.target.id] = "X";
-                lastPlayer = "X";
+                if(event.target.innerText === '')
+                {
+                    event.target.innerText = "X";
+                    event.target.classList.add("X");
+                    state[event.target.id] = "X";
+                    lastPlayer = "X";
+
+                }
+               
             }
 
             //Exercise 4
@@ -68,6 +80,7 @@ window.onload = function()
         }
 
          //Exercise 3
+         //Adding hover functionality to each square
          s.onmouseover = function()
          {
              this.classList.add("hover");
@@ -80,7 +93,25 @@ window.onload = function()
 
     }
 
+    //Exercise 5
+    //New game button in order to restart the game
+    let newGame = document.querySelector('button');
 
+    newGame.addEventListener("click", function()
+    {
+        state = new Array(9);
+        GameOver = false;
+        lastPlayer = "O";
 
+        status.classList.remove('you-won');
+        status.innerText = 'Move your mouse over a square and click to play an X or an O.';
+
+        for (let s of squares)
+        {
+            s.classList.remove('X');
+            s.classList.remove('O');
+            s.innerText = '';
+        }
+    });
 }
 
