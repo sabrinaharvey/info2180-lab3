@@ -37,9 +37,19 @@ window.onload = function()
                 lastPlayer = "X";
             }
 
-
-
         }
+
+         //Exercise 3
+         s.onmouseover = function()
+         {
+             this.classList.add("hover");
+         }
+
+         s.onmouseout = function() 
+         {
+             s.classList.remove("hover");
+         }
+         
     }
     
 
