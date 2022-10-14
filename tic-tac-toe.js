@@ -11,9 +11,10 @@ window.onload = function()
 
    
     let state = new Array(9);
-    const options = ['X', 'O'];
     let lastPlayer = "O"
     let index = 0;
+    let GameOver = false;
+    let status = document.getElementById("status");
 
     for (let s of squares)
     {
@@ -37,6 +38,33 @@ window.onload = function()
                 lastPlayer = "X";
             }
 
+            //Exercise 4
+            //Winning Conditions
+            if (state[0]!= undefined && ((state[0] === state[1] && state[1]===state[2])
+            || (state[0]===state[3] && state[3]===state[6]) || (state[0]===state[4] && state[4]==state[8])))
+            {
+                status.innerText = `Congratulations! ${state[0]} is the Winner!`;
+                status.classList.add('you-won');
+                GameOver = true;
+            }
+
+            else if (state[4]!= undefined && ((state[2]===state[4] && state[4]==state[6]) 
+            ||(state[3] === state[4] && state[4]===state[5]) || (state[1]===state[4] && state[4]===state[7])))
+            {
+                status.innerText = `Congratulations! ${state[4]} is the Winner!`;
+                status.classList.add('you-won');
+                GameOver = true;
+            }
+
+            else if(state[8]!== undefined && ((state[2]===state[5] && state[5]===state[8]) 
+            || (state[6]===state[7] && state[7]===state[8])))
+            {
+                
+                status.innerText = `Congratulations! ${state[8]} is the Winner!`;
+                status.classList.add('you-won');
+                GameOver = true;
+            }
+
         }
 
          //Exercise 3
@@ -49,9 +77,10 @@ window.onload = function()
          {
              s.classList.remove("hover");
          }
-         
+
     }
-    
+
+
 
 }
 
